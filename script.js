@@ -180,52 +180,26 @@ document.addEventListener("DOMContentLoaded", function () {
   const landingVideo = document.getElementById('mobileLandingVideo');
   let isMobile = window.innerWidth <= 700;
   if (landingVideo && isMobile) {
-    landingVideo.muted = false;
-    landingVideo.volume = 0.15;
+    // ONLY set to muted, do not change volume
+    landingVideo.muted = true;
+    landingVideo.removeAttribute("controls");
     landingVideo.play().catch(()=>{});
 
+    // Optionally pause when scrolled away or tab not visible
     function checkVideoVisibility() {
       const landing = document.getElementById('landing');
       if (!landing) return;
       const rect = landing.getBoundingClientRect();
       const fullyVisible = rect.top <= 0 && rect.bottom > window.innerHeight * 0.2;
       if (document.hidden || !fullyVisible) {
-        landingVideo.muted = true;
-        landingVideo.volume = 0;
+        landingVideo.pause();
       } else {
-        landingVideo.muted = false;
-        landingVideo.volume = 0.15;
+        landingVideo.play().catch(()=>{});
       }
     }
     document.addEventListener("visibilitychange", checkVideoVisibility);
     window.addEventListener("scroll", checkVideoVisibility, { passive: true });
     window.addEventListener("resize", checkVideoVisibility);
     checkVideoVisibility();
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.innerWidth <= 700) {
-    document.querySelectorAll('.products-section .media-container').forEach(container => {
-      const img = container.querySelector('img');
-      const video = container.querySelector('video');
-      if (img && video) {
-        // Start with image shown, video hidden
-        img.style.display = 'block';
-        video.style.display = 'none';
-        container.onclick = function () {
-          if (img.style.display !== 'none') {
-            img.style.display = 'none';
-            video.style.display = 'block';
-            video.currentTime = 0;
-            video.play();
-          } else {
-            video.pause();
-            video.style.display = 'none';
-            img.style.display = 'block';
-          }
-        };
-      }
-    });
   }
 });
