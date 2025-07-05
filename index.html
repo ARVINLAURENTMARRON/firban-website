@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FIRBAN Cosmetics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="media/logo.png" sizes="32x32" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Desktop Header -->
+  <header class="header">
+    <div class="header-inner">
+      <img src="media/logo.png" alt="Firban Logo" class="header-logo-circle" />
+      <nav class="nav">
+        <button class="nav-btn active" id="navHome" onclick="scrollToSection('landing', this)">Home</button>
+        <button class="nav-btn" id="navProducts" onclick="scrollToSection('products', this)">Our Products</button>
+        <button class="nav-btn" id="navOrder" onclick="scrollToSection('order', this)">Order Now</button>
+        <button class="nav-btn" id="navAbout" onclick="scrollToSection('about', this)">About Firban</button>
+      </nav>
+    </div>
+  </header>
+  <!-- Mobile Header -->
+  <div class="mobile-header">
+    <div class="mobile-header-inner">
+      <img src="media/logo.png" alt="Firban Logo" class="mobile-header-logo" />
+      <span class="mobile-header-title">Firban Cosmetics</span>
+      <button class="hamburger" id="mobileHamburgerBtn" aria-label="Open navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Nav Popup -->
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="nav-btn active" onclick="handleMobileNav('landing', this)">Home</button>
+    <button class="nav-btn" onclick="handleMobileNav('products', this)">Our Products</button>
+    <button class="nav-btn" onclick="handleMobileNav('order', this)">Order Now</button>
+    <button class="nav-btn" onclick="handleMobileNav('about', this)">About Firban</button>
+  </nav>
+
+  <!-- Landing/Home Section -->
+  <div class="landing" id="landing">
+    <!-- DESKTOP/LAPTOP VERSION (shown on desktop only) -->
+    <div class="landing-desktop">
+      <div class="landing-letters">
+        <div class="big-f-container">
+          <span class="big-f">F</span>
+          <span class="quote">Brighter and happier<br>skin for all</span>
+        </div>
+        <div class="big-c-container">
+          <div class="changing-word" id="changingWord">Innovative</div>
+          <span class="big-c">C</span>
+        </div>
+      </div>
+      <div class="centerpiece" id="centerpiece">
+        <svg class="wavy-line" id="wavyLine" viewBox="0 0 1920 80" fill="none" preserveAspectRatio="none">
+          <path id="wavyPath" d="" stroke="#fff" stroke-width="2.2" stroke-linecap="round" filter="url(#glow)" />
+          <defs>
+            <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#fff" flood-opacity="0.38"/>
+            </filter>
+          </defs>
+        </svg>
+      </div>
+    </div>
+    <!-- MOBILE VERSION (shown on mobile only) -->
+    <div class="landing-mobile-video">
+      <video 
+        id="mobileLandingVideo" 
+        class="mobile-landing-bg" 
+        src="media/mobile_landing_video.mp4" 
+        autoplay 
+        loop 
+        playsinline
+        muted
+      ></video>
+      <div class="mobile-landing-overlay"></div>
+    </div>
+  </div>
+
+  <!-- Our Products Section -->
+  <section id="products">
+    <div class="parallax-bg" data-speed="0.25"></div>
+    <div class="section-content products-section">
+      <h2>Our Products</h2>
+      <div class="product-cards">
+        <!-- Sun Stick Card -->
+        <div class="product-card">
+          <div class="media-container">
+            <img src="media/sun_stick.png" class="sunstick-img" alt="Sun Stick" />
+            <video src="media/sun_stick_video.mp4" class="sunstick-video" style="display:none;" muted loop playsinline></video>
+          </div>
+          <div class="product-name">Sun Stick</div>
+          <button class="learn-more-btn" data-popup="sunstick">Learn More</button>
+        </div>
+        <!-- Firban Cap Card -->
+        <div class="product-card">
+          <div class="media-container">
+            <img src="media/firban_cap.png" class="firban-cap-img" alt="Firban Cap" />
+            <video src="media/firban_cap_video.mp4" class="firban-cap-video" style="display:none;" muted loop playsinline></video>
+          </div>
+          <div class="product-name">Firban Cap</div>
+          <button class="learn-more-btn" data-popup="cap">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Now Section -->
+  <section id="order">
+    <div class="parallax-bg" data-speed="0.40"></div>
+    <div class="section-content">
+      <h2>Order Now</h2>
+      <p class="order-desc">
+        Ready to experience FIRBAN? Place your order quickly and easily through our online order form. Just fill in your details and we’ll handle the rest!
+      </p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScWp-PIY8HclxdQ6EX0I7H-4QjQeA1ardU67nGUnRs7Usd63w/closedform" target="_blank" class="order-btn">
+        Place Order
+      </a>
+    </div>
+  </section>
+
+  <!-- Product Popups/Overlay -->
+  <div class="product-popup-overlay" id="popupOverlay"></div>
+  <!-- Sun Stick Popup -->
+  <div class="product-popup left" id="popupSunstick">
+    <div class="popup-content">
+      <div class="popup-title">
+        <h3>🌞 Sun Master Sun Stick</h3>
+        <div class="popup-underline"></div>
+      </div>
+      <div class="popup-info">
+        <p>• SPF 35 PA+++ for strong UVA/UVB protection—rain or shine</p>
+        <p>• Glutathione to brighten and help even out skin tone</p>
+        <p>• Niacinamide (Vitamin B3) to minimize pores and protect your skin barrier</p>
+        <p>• Papaya Extract for gentle exfoliation and deep hydration</p>
+        <p>• Lightweight, non-sticky, and absorbs quickly—perfect for daily use</p>
+        <p>• Convenient stick format for touch-ups anytime, anywhere</p>
+        <p>• Dermatologist-tested and suitable for sensitive skin</p>
+      </div>
+    </div>
+  </div>
+  <!-- Firban Cap Popup -->
+  <div class="product-popup right" id="popupCap">
+    <div class="popup-content">
+      <div class="popup-title">
+        <h3>🧢 Firban Cap</h3>
+        <div class="popup-underline"></div>
+      </div>
+      <div class="popup-info">
+        <p>• Provides extra sun protection for your face and eyes</p>
+        <p>• Breathable fabric keeps you cool and comfortable all day</p>
+        <p>• Comes in sleek Black or White for effortless styling</p>
+        <p>• Adjustable strap for a custom, secure fit</p>
+        <p>• Minimalist design—pairs easily with any outfit</p>
+        <p>• Lightweight and easy to pack for travel or daily use</p>
+        <p>• Durable and easy to clean for everyday wear</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="about-title-container">
+      <div class="about-title">About Firban</div>
+      <div class="about-underline"></div>
+    </div>
+    <div class="about-content">
+      <div class="about-card">
+        <h3>Firban</h3>
+        <p>
+          Started out as a spark between friends and grew into something much bigger. Our journey was fueled by passion and the joy of creating together, not just strategy or success.<br><br>
+          What began as a dream soon became a real venture—FIRBAN Cosmetics is not just a school project, but something we can truly call our own. We faced tough challenges: inventory delays, group changes, misunderstandings, and more.<br><br>
+          Through it all, we stuck to our goal—helping protect Filipinos from the harsh Philippine climate and giving everyone brighter, healthier skin. The positive feedback we received proved our efforts made a difference, and for that, we're grateful.
+        </p>
+      </div>
+      <div class="about-row-cards">
+        <div class="about-card about-mission">
+          <h3>Our Mission</h3>
+          <p>
+            To provide innovative skincare solutions that shield and nourish skin, empowering individuals to thrive in the Philippines' challenging climate. We deliver products that protect, care, and promote long-term skin health for brighter, healthier skin for all.
+          </p>
+        </div>
+        <div class="about-card about-vision">
+          <h3>Our Vision</h3>
+          <p>
+            To help protect people from the harsh Philippine climate—ensuring brighter and healthier skin for all. We envision a future where everyone can confidently enjoy the outdoors, thanks to our effective, climate-conscious skincare.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="about-social-bar">
+      <span class="find-us-text">Where to Find Us</span>
+      <div class="socials">
+        <a href="https://www.instagram.com/firbancosmetics/" target="_blank"><img src="media/instagram.png" class="social-icon" alt="Instagram"></a>
+        <a href="https://www.facebook.com/profile.php?id=61561516962492" target="_blank"><img src="media/facebook.png" class="social-icon" alt="Facebook"></a>
+        <a href="https://www.tiktok.com/@firbancosmetics" target="_blank"><img src="media/tiktok.png" class="social-icon" alt="TikTok"></a>
+      </div>
+    </div>
+    <div class="about-copyright-bar">
+      &copy; 2025 FIRBAN Cosmetics. All rights reserved.
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
