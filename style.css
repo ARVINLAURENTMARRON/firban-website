@@ -1023,29 +1023,34 @@ p {
 }
 @media (max-width: 700px) {
   .about-row-cards {
-    flex-direction: row !important;
-    gap: 10px !important;
-    justify-content: center;
+    flex-direction: column !important;      /* CHANGE from row to column */
+    gap: 16px !important;                   /* More vertical space */
     align-items: stretch;
     width: 100vw !important;
     margin-bottom: 0 !important;
   }
   .about-mission,
   .about-vision {
-    min-width: 46vw !important;
-    max-width: 49vw !important;
-    flex: 1 1 0;
-    margin: 0 !important;
-    padding: 14px 8px 12px 8px !important;
+    max-width: 98vw !important;
+    width: 96vw !important;
+    box-sizing: border-box;
+    margin: 0 auto;
     border-radius: 18px !important;
     font-size: 0.97rem !important;
-    box-sizing: border-box;
+    padding: 14px 10px 12px 10px !important;
+  }
+  .about-mission {
+    margin-right: 18px !important;     /* Adds space to the right */
+  }
+  .about-vision {
+    margin-left: 18px !important;      /* Adds space to the left */
   }
   .about-card h3 {
     font-size: 1.25rem !important;
     margin-bottom: 0.5em !important;
   }
 }
+
 
 
 /* -------- SOCIAL BAR & COPYRIGHT -------- */
